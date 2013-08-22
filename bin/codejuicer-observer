@@ -1,0 +1,20 @@
+#!/usr/bin/env perl
+use Modern::Perl;
+use FindBin::libs;
+use CodeJuicer;
+use CodeJuicer::Observer;
+use Daemon::Control;
+ 
+Daemon::Control->new({
+  name        => "codejuicer-observer",
+  lsb_start   => '$syslog $remote_fs',
+  lsb_stop    => '$syslog',
+  lsb_sdesc   => 'CodeJuicer Observer.',
+  lsb_desc    => 'Controls the codejuicer-observer daemon.',
+  program     => sub { CodeJuicer::Observer->start },
+  directory   => $CodeJuicer::SHAREDIR,
+  pid_file    => '/tmp/codejuicer-observer.pid',
+  stderr_file => '/tmp/codejuicer-observer.out',
+  stdout_file => '/tmp/codejuicer-observer.out',
+  fork        => 2,
+})->run;

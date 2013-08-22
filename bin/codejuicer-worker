@@ -1,0 +1,20 @@
+#!/usr/bin/env perl
+use Modern::Perl;
+use FindBin::libs;
+use CodeJuicer;
+use CodeJuicer::Worker;
+use Daemon::Control;
+ 
+Daemon::Control->new({
+  name        => "codejuicer-worker",
+  lsb_start   => '$syslog $remote_fs',
+  lsb_stop    => '$syslog',
+  lsb_sdesc   => 'CodeJuicer Gearman Worker.',
+  lsb_desc    => 'Controls the codejuicer-worker daemon.',
+  program     => sub { CodeJuicer::Worker->start },
+  directory   => $CodeJuicer::SHAREDIR,
+  pid_file    => '/tmp/codejuicer-worker.pid',
+  stderr_file => '/tmp/codejuicer-worker.out',
+  stdout_file => '/tmp/codejuicer-worker.out',
+  fork        => 2,
+})->run;

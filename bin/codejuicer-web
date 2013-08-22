@@ -1,0 +1,39 @@
+#!/usr/bin/env perl
+use Modern::Perl;
+use FindBin::libs;
+use Mojolicious::Lite;
+use CodeJuicer::DB;
+
+get '/' => sub {
+  my $self = shift;
+  my $repositories = CodeJuicer::DB->c('repositories')->find;
+  my @repositories = $repositories->all;
+  $self->render(json => \@repositories);
+};
+
+get '/graphs/:id' => sub {
+  my $self = shift;
+  my $graphs = CodeJuicer::DB->c('graphs')->find({ _id => $self->param('id') });
+  $self->render(json => $graphs->all);
+};
+
+get '/metrics/:id' => sub {
+  my $self = shift;
+  my $metrics = CodeJuicer::DB->c('metrics')->find({ _id => $self->param('id') });
+  $self->render(json => $metrics->all);
+};
+
+app->start;
+__DATA__
+
+@@ index.html.ep
+% layout 'default';
+% title 'Welcome';
+Welcome to the Mojolicious real-time web framework!
+
+@@ layouts/default.html.ep
+<!DOCTYPE html>
+<html>
+  <head><title><%= title %></title></head>
+  <body><%= content %></body>
+</html>
