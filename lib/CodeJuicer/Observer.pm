@@ -22,6 +22,7 @@ sub start {
     while (my $repository = $repositories->next) {
       if (_needs_update($repository)) {
         my $app = CodeJuicer::Cmd->new;
+        say $repository->{url}, " needs update";
         my ($cmd, $opt, @args) = $app->prepare_command('update', '--type', $repository->{type}, '--url', $repository->{url});
         $app->execute_command($cmd, $opt, @args);
       }

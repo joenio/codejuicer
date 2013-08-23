@@ -1,0 +1,75 @@
+Ferramenta de linha de comando com base no motor de processamento de tarefas em
+fila Gearman, para baixar e atualizar código-fonte de repositórios Git, Svn e
+outros. Fazer análise estática, calculo de métricas e outras informações
+extraídas do código-fonte através do Analizo, armazenar estas informações em um
+banco de dados NoSQL MongoDB. Este banco deverá armazenar também informações
+sobre as tarefas na fila do Gearman e o progresso de cada tarefa sendo
+executada. A ferramenta terá também a responsabilidade de periodicamente
+atualizar os dados dos projetos adicionados, isto implica em atualizar o
+código-fonte, atualizar métricas e outras informações. A interface de linha de
+comando desta ferramenta será como se segue:
+
+Inicia em background um processo com o Gearman Worker:
+$ codejuicer-worker start|stop|status
+
+Adiciona projeto na fila para ser processado pelo worker:
+$ codejuicer add --url <URL> --type [GIT|SVN|...]
+$ codejuicer update --url <URL> --type [GIT|SVN|...]
+
+$ codejuicer start (inicia worker e observer)
+$ codejuicer status (status do worker e observer)
+$ codejuicer stop (finaliza worker e observer)
+
+Inicia processo de monitoramento dos itens na fila:
+$ codejuicer-observer start|stop|status
+
+Banco de Dados
+==============
+
+repositories: id(url_sha1), url, type, added_at, updated_at, status, progress
+
+metrics: id(url_sha1), metrics
+
+graphs: id(url_sha1), graphs
+
+Campos:
+
+status: 'adding' -> 'added'
+        'updating' -> 'updated'
+
+progress: 0 -> 100
+
+Funcionamento
+=============
+
+observer: periodicamente (a cada hora) verifica a collection repositories,
+consulta o campo status e os campos added_at ou updated_at com base no valor
+encontrado no status. Caso já tenha se passado 24 horas da última atualização
+(ou adição) execute `update` para baixar as atualizações de código,
+analisar e atualizar as métricas e outras informações.
+
+observer status: diz se o observer está rodando ou não
+
+add: adiciona tarefa de adicionar projeto na fila
+
+update: adiciona tarefa de atualizar projeto na fila
+
+worker: Gearman worker, possui 2 funções: 'add' e 'update', que adiciona ou
+atualiza o repositório e chama o Analizo para analizar o código fonte gerando
+métricas e outras informações que serão gravadas nas collections 'metrics' e
+'graphs'.
+
+worker status: diz se o worker está executando e mostra a situação
+de tarefas na fila, quantidade, etc...
+
+Repositórios para testar o sistema
+==================================
+
+Subversion Java
+svn://svn.code.sf.net/p/jfreechart/code/trunk
+
+Git C
+git://github.com/libgit2/libgit2.git
+
+Git C++
+https://github.com/mongodb/mongo.git
