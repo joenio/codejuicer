@@ -13,8 +13,8 @@ Daemon::Control->new({
   lsb_desc    => 'Controls the codejuicer-worker daemon.',
   program     => sub { CodeJuicer::Worker->start },
   directory   => $CodeJuicer::SHAREDIR,
-  pid_file    => '/tmp/codejuicer-worker.pid',
-  stderr_file => '/tmp/codejuicer-worker.out',
-  stdout_file => '/tmp/codejuicer-worker.out',
+  pid_file    => 'codejuicer-worker.pid',
+  stderr_file => 'codejuicer-worker.out',
+  stdout_file => 'codejuicer-worker.out',
   fork        => 2,
 })->run;

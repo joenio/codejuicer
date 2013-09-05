@@ -13,8 +13,8 @@ Daemon::Control->new({
   lsb_desc    => 'Controls the codejuicer-observer daemon.',
   program     => sub { CodeJuicer::Observer->start },
   directory   => $CodeJuicer::SHAREDIR,
-  pid_file    => '/tmp/codejuicer-observer.pid',
-  stderr_file => '/tmp/codejuicer-observer.out',
-  stdout_file => '/tmp/codejuicer-observer.out',
+  pid_file    => 'codejuicer-observer.pid',
+  stderr_file => 'codejuicer-observer.out',
+  stdout_file => 'codejuicer-observer.out',
   fork        => 2,
 })->run;
