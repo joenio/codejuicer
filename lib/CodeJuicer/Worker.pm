@@ -14,8 +14,10 @@ sub start {
   my ($self) = @_;
   say "starting worker, PID $$";
   $worker->job_servers("127.0.0.1:$CodeJuicer::GEARMAN_PORT");
-  $self->register_function('add',    sub { CodeJuicer::Worker::Functions->add(@_)    });
-  $self->register_function('update', sub { CodeJuicer::Worker::Functions->update(@_) });
+  CodeJuicer::Worker::Functions->each(sub {
+    my ($name, $code) = @_;
+    $self->register_function($name, sub { &$code(@_) });
+  });
   work() while 1;
 }
 

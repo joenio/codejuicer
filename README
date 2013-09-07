@@ -23,6 +23,11 @@ $ codejuicer stop (finaliza worker e observer)
 Inicia processo de monitoramento dos itens na fila:
 $ codejuicer-observer start|stop|status
 
+Analisa o grafo DSM, calcula cria novos clusters e guarda no banco de dados:
+$ codejuicer cluster --url <URL> --type [GIT|SVN|...]
+
+apt-get install mongodb libmongodb-perl
+
 Banco de Dados
 ==============
 
@@ -73,27 +78,3 @@ git://github.com/libgit2/libgit2.git
 
 Git C++
 https://github.com/mongodb/mongo.git
-
-Usar (*) Log::Any::App como sistema de logs, ele abstrai em qual arquivo
-será gravado os logs e sabe lidar quando executa como usuário comum
-ou como root. Não está empacotado no Debian e precisa desses abaixo que
-também não estão:
-
-* Alt-Log-Any-App-FWR-0.07 (enviado ao pkg-perl)
-  + Log::Dispatch::Dir (aceito)
-  * File::Write::Rotate (enviado ao pkg-perl)
-    * SHARYANTO::File::Flock (enviado ao pkg-perl)
-      + Rinci (aceito)
-        + DefHash (aceito)
-      + experimental (ja esta empacotado)
-      + Parse::Netstat (aceito)
-      * Perinci::Object (enviado ao pkg-perl)
-        + SHARYANTO::String::Util (aceito)
-    + Taint::Runtime (aceito)
-    + tainting (aceito)
-    + Monkey::Patch::Action (aceito)
-  * Log::Dispatch::FileWriteRotate (enviado ao pkg-perl)
-    * File::Write::Rotate
-  + Alt::Base (aceito)
-    + Alt (aceito)
-  + Log::Any::Adapter::Log4perl (aceito)

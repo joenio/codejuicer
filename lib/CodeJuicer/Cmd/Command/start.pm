@@ -6,7 +6,7 @@ extends qw(MooseX::App::Cmd::Command);
  
 =head1 NAME
 
-CodeJuicer::Cmd::Command::start - start daemons
+CodeJuicer::Cmd::Command::start - start CodeJuicer's daemons
 
 =cut
 
