@@ -1,0 +1,3 @@
+codejuicer-observer, codejuicer-worker and mojolicous create
+each a diferent file, its interesting that all log files live
+in the same place (PID files too).
