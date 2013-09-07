@@ -1,6 +1,12 @@
 package CodeJuicer;
 use Modern::Perl;
 
+=head1 NAME
+
+CodeJuicer - extracts informations from the source code
+
+=cut
+
 use File::Share ':all';
 our $SHAREDIR = dist_dir(__PACKAGE__);
 
