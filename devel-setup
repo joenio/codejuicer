@@ -1,0 +1,106 @@
+#!/bin/bash
+
+# this script is based on the http://metacpan.org/module/Prophet::Devel
+
+if [ "$(id -u)" != "0" ]; then
+  echo "This script must be run as root" 1>&2
+  exit 1
+fi
+
+echo
+echo "This script will install all prerequisites to hack on CodeJuicer."
+echo "It needs analizo installed and working property somewhere."
+echo "Also, needs the openssl development libraries installed."
+echo
+read -sn 1 -p "Press the any key to continue or Ctrl-C to abort."
+echo
+ 
+if [ ! -e lib/Analizo.pm ]; then
+  which analizo > /dev/null; if [ $? -ne 0 ]; then
+    echo
+    echo "analizo not found!" 1>&2
+    echo
+    read -p "Where analizo is? (full path): " ANALIZO_SRC
+    if [ ! -e $ANALIZO_SRC/lib/Analizo.pm ]; then
+      echo "$ANALIZO_SRC/lib/Analizo.pm not found!";
+      exit 1
+    fi
+    cd lib
+    ln -s $ANALIZO_SRC/lib/Analizo.pm
+    ln -s $ANALIZO_SRC/lib/Analizo
+    cd ..
+  fi
+fi
+
+if [ -e /etc/debian_version ]; then
+  dpkg -s libssl-dev > /dev/null 2>&1; if [ $? -ne 0 ]; then
+    echo
+    echo "libssl-dev not found!" 1>&2
+    echo
+    echo "# apt-get install libssl-dev"
+    read -sn 1 -p "Press the any key to install or Ctrl-C to abort."
+    apt-get install libssl-dev
+  fi
+else
+  echo
+  echo "openssl development libraries not found; aborting..."
+  exit 1
+fi
+
+which git > /dev/null; if [ $? -ne 0 ]; then
+  echo
+  echo "git is not found!" 1>&2
+  echo
+  if [ -e /etc/debian_version ]; then
+    echo "# apt-get install git"
+    read -sn 1 -p "Press the any key to install or Ctrl-C to abort."
+    apt-get install git
+  else
+    echo "Please install git first."
+    exit 1
+  fi
+fi
+
+which make > /dev/null; if [ $? -ne 0 ]; then
+  echo
+  echo "make is not found!" 1>&2
+  echo
+  if [ -e /etc/debian_version ]; then
+    echo "# apt-get install build-essential"
+    read -sn 1 -p "Press the any key to install or Ctrl-C to abort."
+    apt-get install build-essential
+  else
+    echo "Please install make first."
+    exit 1
+  fi
+fi
+
+which cpanm > /dev/null; if [ $? -ne 0 ]; then
+  echo
+  echo "cpanm is not found!" 1>&2
+  echo
+  which curl > /dev/null; if [ $? -ne 0 ]; then
+    echo "# apt-get install curl"
+  fi
+  echo "# curl -L http://cpanmin.us | perl - App::cpanminus"
+  read -sn 1 -p "Press the any key to install or Ctrl-C to abort."
+  which curl > /dev/null; if [ $? -ne 0 ]; then
+    apt-get install curl
+  fi
+  curl -L http://cpanmin.us | perl - App::cpanminus
+fi
+
+echo "Installing Dist::Zilla"
+cpanm -n -q Dist::Zilla || exit -1
+echo "Done"
+ 
+echo "Installing Dist::Zilla plugins"
+dzil authordeps | cpanm -n -q
+echo "Done"
+
+echo "Installing Perl modules"
+dzil listdeps | cpanm -n -q
+echo "Done"
+ 
+echo
+echo "Complete"

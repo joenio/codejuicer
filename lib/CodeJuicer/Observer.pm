@@ -9,7 +9,6 @@ our $EXPIRES = 24 * 60 * 60; # 24 hours
 
 sub _needs_update {
   my ($repository) = @_;
-  return 1;
   my $date = $repository->{"$repository->{status}_at"};
   return unless $date;
   my $expires_at = $date->add(seconds => $EXPIRES);

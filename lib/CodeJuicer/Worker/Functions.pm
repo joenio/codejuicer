@@ -4,6 +4,7 @@ use Modern::Perl;
 sub _load {
   my ($klass) = @_;
   eval "use $klass;";
+  if ($@) { die $@ };
   $klass;
 }
 

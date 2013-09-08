@@ -9,7 +9,7 @@ use DateTime;
 use Graph::D3;
 
 sub execute {
-  my ($self, $type, $url) = @_;
+  my ($class, $type, $url) = @_;
   my $id = my $input = sha1_hex($url);
   try {
     CodeJuicer::DB->c('repositories')->update({ _id => $id }, {

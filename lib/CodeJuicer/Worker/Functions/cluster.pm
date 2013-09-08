@@ -36,7 +36,7 @@ sub _cluster_dsm_graph_by_dir {
 }
 
 sub execute {
-  my ($self, $type, $url) = @_;
+  my ($class, $type, $url) = @_;
   my $id = sha1_hex($url);
   try {
     my $repositories = CodeJuicer::DB->c('repositories')->find({ _id => $id });
