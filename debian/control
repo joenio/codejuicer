@@ -1,0 +1,52 @@
+Source: libcodejuicer-perl
+Section: perl
+Priority: optional
+Maintainer: Joenio Costa <joenio@colivre.coop.br>
+Build-Depends: debhelper (>= 9.20120312)
+Build-Depends-Indep: libdaemon-control-perl,
+ libdatetime-perl,
+ libfile-share-perl,
+ libfile-sharedir-install-perl,
+ libfindbin-libs-perl,
+ libgearman-client-perl,
+ libgit-wrapper-perl,
+ libgraph-d3-perl,
+ libio-prompt-perl,
+ liblist-moreutils-perl,
+ libmodern-perl-perl,
+ libmojolicious-perl,
+ libmongodb-perl,
+ libmoose-perl,
+ libmoosex-app-cmd-perl,
+ libsvn-perl,
+ libtry-tiny-perl,
+ perl
+Standards-Version: 3.9.4
+Homepage: https://metacpan.org/release/CodeJuicer
+
+Package: libcodejuicer-perl
+Architecture: all
+Depends: ${misc:Depends}, ${perl:Depends},
+ analizo,
+ gearman-job-server,
+ libdaemon-control-perl,
+ libdatetime-perl,
+ libfile-share-perl,
+ libfindbin-libs-perl,
+ libgearman-client-perl,
+ libgit-wrapper-perl,
+ libgraph-d3-perl,
+ libio-prompt-perl,
+ liblist-moreutils-perl,
+ libmodern-perl-perl,
+ libmojolicious-perl,
+ libmongodb-perl,
+ libmoose-perl,
+ libmoosex-app-cmd-perl,
+ libsvn-perl,
+ libtry-tiny-perl,
+ mongodb-server
+Description: extracts informations from the source code
+ (no description was found)
+ .
+ This description was automagically extracted from the module by dh-make-perl.
