@@ -32,6 +32,8 @@ has type => (
 sub execute {
   my ($self, $opt, $args) = @_;
   CodeJuicer->dispatch_gearman_task('update', $self->type, $self->url);
+  CodeJuicer->dispatch_gearman_task('cluster', $self->type, $self->url);
+  say "Task to update and analyse repository added to the Gearman queue";
 }
 
 __PACKAGE__->meta->make_immutable;

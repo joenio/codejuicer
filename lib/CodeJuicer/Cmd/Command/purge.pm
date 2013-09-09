@@ -10,7 +10,7 @@ extends qw(MooseX::App::Cmd::Command);
  
 =head1 NAME
 
-CodeJuicer::Cmd::Command::purge - remove database and all fetched repositories
+CodeJuicer::Cmd::Command::purge - drop database and all fetched repositories
 
 =cut
 

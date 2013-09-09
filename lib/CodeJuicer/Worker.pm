@@ -26,8 +26,9 @@ sub register_function {
   $worker->register_function($name => sub {
     my ($job) = @_;
     my (@params) = @{ thaw($job->arg) };
-    say "working on " . $name;
+    print "working on $name";
     my $r = &$block(@params);
+    say "done $name";
     return (ref $r ? freeze($r) : undef);
   });
 }

@@ -15,7 +15,7 @@ sub _needs_update {
   return DateTime->compare($date, $expires_at) == 1;
 }
 
-our @EXECUTE_ON_UPDATE = ('update', 'cluster');
+our @EXECUTE_CMD_ON_UPDATE = ('update');
 
 sub start {
   say "starting observer, PID $$";
@@ -25,7 +25,7 @@ sub start {
       if (_needs_update($repository)) {
         my $app = CodeJuicer::Cmd->new;
         say $repository->{url}, " needs update";
-        for my $command (@EXECUTE_ON_UPDATE) {
+        for my $command (@EXECUTE_CMD_ON_UPDATE) {
           my ($cmd, $opt, @args) = $app->prepare_command(
             $command,
             '--type', $repository->{type},
