@@ -1,0 +1,9 @@
+Build CPAN release
+==================
+
+$ dzil build
+
+Build Debian package
+====================
+
+$ dzil run debuild -b -us -uc
