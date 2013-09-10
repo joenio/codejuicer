@@ -1,2 +1,3 @@
+CJ_BINDIR="/usr/bin"
 CJ_RUNDIR="/var/run/codejuicer"
 CJ_LOGDIR="/var/log/codejuicer"
