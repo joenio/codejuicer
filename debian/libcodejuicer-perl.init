@@ -1,0 +1,35 @@
+#!/bin/sh
+
+# Based on script generated at Tue Sep 10 15:56:18 2013
+# with Daemon::Control 0.001003
+
+### BEGIN INIT INFO
+# Provides:          codejuicer
+# Required-Start:    $syslog $remote_fs
+# Required-Stop:     $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: CodeJuicer Daemons.
+# Description:       Controls the codejuicer daemons.
+### END INIT INFO`
+
+[ -r /etc/default/codejuicer ] && . /etc/default/codejuicer
+
+if [ -x /etc/init.d/codejuicer-worker ];
+then
+    invoke-rc.d codejuicer-worker $1
+else
+    echo "Required program /etc/init.d/codejuicer-worker not found!"
+    exit 1;
+fi
+
+if [ -x /etc/init.d/codejuicer-observer ];
+then
+    invoke-rc.d codejuicer-observer $1
+else
+    echo "Required program /etc/init.d/codejuicer-observer not found!"
+    exit 1;
+fi
+
+# TODO
+# start codejuicer-web with hypnotoad
