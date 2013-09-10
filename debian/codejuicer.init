@@ -15,19 +15,19 @@
 
 [ -r /etc/default/codejuicer ] && . /etc/default/codejuicer
 
-if [ -x /etc/init.d/codejuicer-worker ];
+if [ -x $CJ_BINDIR/codejuicer-worker ];
 then
-    invoke-rc.d codejuicer-worker $1
+    $CJ_BINDIR/codejuicer-worker $1
 else
-    echo "Required program /etc/init.d/codejuicer-worker not found!"
+    echo "Required program $CJ_BINDIR/codejuicer-worker not found!"
     exit 1;
 fi
 
-if [ -x /etc/init.d/codejuicer-observer ];
+if [ -x $CJ_BINDIR/codejuicer-observer ];
 then
-    invoke-rc.d codejuicer-observer $1
+    $CJ_BINDIR/codejuicer-observer $1
 else
-    echo "Required program /etc/init.d/codejuicer-observer not found!"
+    echo "Required program $CJ_BINDIR/codejuicer-observer not found!"
     exit 1;
 fi
 
