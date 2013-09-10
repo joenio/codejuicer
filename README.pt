@@ -78,3 +78,5 @@ git://github.com/libgit2/libgit2.git
 
 Git C++
 https://github.com/mongodb/mongo.git
+
+codejuicer add --url git://gitorious.org/f-droid/fdroidclient.git --type Git
