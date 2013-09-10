@@ -27,7 +27,7 @@ Homepage: https://metacpan.org/release/CodeJuicer
 Package: libcodejuicer-perl
 Architecture: all
 Depends: ${misc:Depends}, ${perl:Depends},
- analizo,
+ analizo (>= 0.18.0),
  gearman-job-server,
  libdaemon-control-perl,
  libdatetime-perl,
