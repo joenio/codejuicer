@@ -10,4 +10,9 @@ Create a file /etc/apt/sources.list.d/codejuicer.list:
 Run as root:
 
   # apt-get update
-  # apt-get install libcodejuicer-perl
+  # apt-get install codejuicer
+
+Starting daemons
+----------------
+
+  # invoke-rc.d codejuicer start
