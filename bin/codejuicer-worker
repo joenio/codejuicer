@@ -4,7 +4,7 @@ use FindBin::libs;
 use CodeJuicer;
 use CodeJuicer::Worker;
 use Daemon::Control;
- 
+
 Daemon::Control->new({
   name        => "codejuicer-worker",
   lsb_start   => '$syslog $remote_fs',
@@ -13,8 +13,8 @@ Daemon::Control->new({
   lsb_desc    => 'Controls the codejuicer-worker daemon.',
   program     => sub { CodeJuicer::Worker->start },
   directory   => $CodeJuicer::SHAREDIR,
-  pid_file    => 'codejuicer-worker.pid',
-  stderr_file => 'codejuicer-worker.out',
-  stdout_file => 'codejuicer-worker.out',
+  pid_file    => "$CodeJuicer::RUNDIR/codejuicer-worker.pid",
+  stderr_file => "$CodeJuicer::LOGDIR/codejuicer-worker.log",
+  stdout_file => "$CodeJuicer::LOGDIR/codejuicer-worker.log",
   fork        => 2,
 })->run;

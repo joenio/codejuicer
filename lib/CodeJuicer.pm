@@ -43,4 +43,8 @@ sub dispatch_gearman_task {
   $gearman->dispatch_background($task);
 }
 
+use FindBin qw($Bin);
+our $RUNDIR = $ENV{CJ_RUNDIR} // "$Bin/../log";
+our $LOGDIR = $ENV{CJ_LOGDIR} // "$Bin/../log";
+
 1;
