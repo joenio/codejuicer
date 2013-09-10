@@ -1,9 +1,20 @@
+=========
+= HACKING
+=========
+
 Build CPAN release
-==================
+------------------
 
 $ dzil build
 
 Build Debian package
-====================
+--------------------
 
-$ dzil run debuild -b -us -uc
+$ dzil run debuild -b
+
+to avoid PGP sign add "-us -uc"
+
+Upload Debian package to repository
+-----------------------------------
+
+$ dput joenio.me libcodejuicer-perl_<VERSION>_<ARCH>.changes

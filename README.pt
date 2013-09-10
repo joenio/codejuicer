@@ -20,6 +20,15 @@ $ codejuicer start (inicia worker e observer)
 $ codejuicer status (status do worker e observer)
 $ codejuicer stop (finaliza worker e observer)
 
+PROBLEMA: estes comandos nao sao muito bem facilmente gerenciaveis em
+ambientes de devel e production, dificil criar um script para iniciar os
+servicos que funcionem nos 2 casos, melhor criar scripts e mecanismos deiferentes
+para isto o melhor seria:
+ 1) script para iniciar os servicos em modo desenvolvimento
+ 2) outro script para iniciar os servicos em modo production,
+    preferencialmente no formato Debian:
+    # invoke-rc.d codejuicer start|stop|status|restart
+
 Inicia processo de monitoramento dos itens na fila:
 $ codejuicer-observer start|stop|status
 
@@ -78,3 +87,5 @@ git://github.com/libgit2/libgit2.git
 
 Git C++
 https://github.com/mongodb/mongo.git
+
+codejuicer add --url git://gitorious.org/f-droid/fdroidclient.git --type Git

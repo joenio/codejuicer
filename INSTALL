@@ -1,0 +1,13 @@
+==============
+= Installation
+==============
+
+Create a file /etc/apt/sources.list.d/codejuicer.list:
+
+  deb http://analizo.org/download ./
+  deb http://debian.joenio.me unstable/
+
+Run as root:
+
+  # apt-get update
+  # apt-get install libcodejuicer-perl
