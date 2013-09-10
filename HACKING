@@ -2,15 +2,22 @@
 = HACKING
 =========
 
+Starting daemons
+----------------
+
+  $ ./bin/codejuicer-worker start
+  $ ./bin/codejuicer-observer start
+  $ morbo bin/codejuicer-web
+
 Build CPAN release
 ------------------
 
-$ dzil build
+  $ dzil build
 
 Build Debian package
 --------------------
 
-$ dzil run debuild -b
+  $ dzil run debuild -b
 
 The deb package and other files will be in the .build dir.
 
@@ -19,4 +26,4 @@ to avoid PGP sign add "-us -uc"
 Upload Debian package to repository
 -----------------------------------
 
-$ dput joenio.me libcodejuicer-perl_<VERSION>_<ARCH>.changes
+  $ dput joenio.me codejuicer_<VERSION>_<ARCH>.changes
