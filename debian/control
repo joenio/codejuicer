@@ -1,4 +1,4 @@
-Source: libcodejuicer-perl
+Source: codejuicer
 Section: perl
 Priority: optional
 Maintainer: Joenio Costa <joenio@colivre.coop.br>
@@ -24,7 +24,7 @@ Build-Depends-Indep: libdaemon-control-perl,
 Standards-Version: 3.9.4
 Homepage: https://metacpan.org/release/CodeJuicer
 
-Package: libcodejuicer-perl
+Package: codejuicer
 Architecture: all
 Depends: ${misc:Depends}, ${perl:Depends},
  analizo (>= 0.18.0),
