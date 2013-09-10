@@ -15,6 +15,16 @@
 
 [ -r /etc/default/codejuicer ] && . /etc/default/codejuicer
 
+if [ -z $CJ_RUNDIR ];
+then
+    echo "Required variables aren't defined at /etc/default/codejuicer file!"
+    exit 1;
+fi
+
+export CJ_BINDIR=$CJ_BINDIR
+export CJ_RUNDIR=$CJ_RUNDIR
+export CJ_LOGDIR=$CJ_LOGDIR
+
 if [ -x $CJ_BINDIR/codejuicer-worker ];
 then
     $CJ_BINDIR/codejuicer-worker $1
