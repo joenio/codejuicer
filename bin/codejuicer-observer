@@ -11,6 +11,8 @@ Daemon::Control->new({
   lsb_stop    => '$syslog',
   lsb_sdesc   => 'CodeJuicer Observer.',
   lsb_desc    => 'Controls the codejuicer-observer daemon.',
+  init_config => '/etc/default/codejuicer',
+  path        => "$CodeJuicer::BINDIR/codejuicer-observer",
   program     => sub { CodeJuicer::Observer->start },
   directory   => $CodeJuicer::SHAREDIR,
   pid_file    => "$CodeJuicer::RUNDIR/codejuicer-observer.pid",
