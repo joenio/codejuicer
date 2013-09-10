@@ -12,6 +12,8 @@ Build Debian package
 
 $ dzil run debuild -b
 
+The deb package and other files will be in the .build dir.
+
 to avoid PGP sign add "-us -uc"
 
 Upload Debian package to repository
