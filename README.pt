@@ -16,17 +16,11 @@ Adiciona projeto na fila para ser processado pelo worker:
 $ codejuicer add --url <URL> --type [GIT|SVN|...]
 $ codejuicer update --url <URL> --type [GIT|SVN|...]
 
-$ codejuicer start (inicia worker e observer)
-$ codejuicer status (status do worker e observer)
-$ codejuicer stop (finaliza worker e observer)
-
 Inicia processo de monitoramento dos itens na fila:
 $ codejuicer-observer start|stop|status
 
 Analisa o grafo DSM, calcula cria novos clusters e guarda no banco de dados:
 $ codejuicer cluster --url <URL> --type [GIT|SVN|...]
-
-apt-get install mongodb libmongodb-perl
 
 Banco de Dados
 ==============
