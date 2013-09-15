@@ -41,5 +41,23 @@ else
     exit 1;
 fi
 
-# TODO
-# start codejuicer-web with hypnotoad
+if [ -x $CJ_BINDIR/codejuicer-web ];
+then
+  case "$1" in
+    start)
+      echo "Starting codejuicer-web (hypnotoad)";
+      hypnotoad -f $CJ_BINDIR/codejuicer-web >> $CJ_LOGDIR/codejuicer-web.log 2>&1 &
+      ;;
+    stop)
+      hypnotoad -s $CJ_BINDIR/codejuicer-web
+      ;;
+    restart)
+      hypnotoad -s $CJ_BINDIR/codejuicer-web
+      echo "Starting codejuicer-web (hypnotoad)";
+      hypnotoad -f $CJ_BINDIR/codejuicer-web >> $CJ_LOGDIR/codejuicer-web.log 2>&1 &
+      ;;
+  esac
+else
+    echo "Required program $CJ_BINDIR/codejuicer-web not found!"
+    exit 1;
+fi
