@@ -2,6 +2,7 @@ package CodeJuicer::Cmd::Command::add;
 use Modern::Perl;
 use Moose;
 use CodeJuicer;
+use CodeJuicer::DB;
 
 extends qw(MooseX::App::Cmd::Command);
  
@@ -37,9 +38,15 @@ has type => (
 
 sub execute {
   my ($self, $opt, $args) = @_;
-  CodeJuicer->dispatch_gearman_task('add', $self->type, $self->url);
-  CodeJuicer->dispatch_gearman_task('cluster', $self->type, $self->url);
-  say "Task to fetch and analyse repository added to the Gearman queue";
+  if (CodeJuicer::DB->c('repositories')->count({ url => $self->url }) > 0) {
+    warn "This URL already in the database!\n";
+    warn "Try run `update` if you want to update it.\n";
+  }
+  else {
+    CodeJuicer->dispatch_gearman_task('add', $self->type, $self->url);
+    CodeJuicer->dispatch_gearman_task('cluster', $self->type, $self->url);
+    say "Task to fetch and analyse repository added to the Gearman queue";
+  }
 }
 
 __PACKAGE__->meta->make_immutable;
