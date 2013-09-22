@@ -8,6 +8,12 @@ use Analizo::Batch::Job::Directories;
 use DateTime;
 use Graph::D3;
 
+=head1 NAME
+
+CodeJuicer::Worker::Functions::add - add URL, download, analyse, write in DB
+
+=cut
+
 sub execute {
   my ($class, $type, $url) = @_;
   my $id = my $output = my $input = sha1_hex($url);
@@ -65,3 +71,14 @@ sub execute {
 }
 
 1;
+
+=head1 AUTHOR
+
+Joenio Costa <joenio@colivre.coop.br>
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright 2013 Joenio Costa
+
+This library is free software; you may redistribute it and/or modify
+it under the same terms as Perl itself.

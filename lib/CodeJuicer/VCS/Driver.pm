@@ -4,6 +4,18 @@ use Moose;
 use List::MoreUtils qw(uniq);
 use File::Find;
 
+=head1 NAME
+
+CodeJuicer::VCS::Driver - namespace for version control systems drivers
+
+=head1 METHODS
+
+=head2 available_drivers
+
+Return a list of all drivers name found in the system.
+
+=cut
+
 has url => (is => 'rw');
 has output => (is => 'rw');
 has input => (is => 'rw');
@@ -49,3 +61,14 @@ sub available_drivers {
 }
 
 1;
+
+=head1 AUTHOR
+
+Joenio Costa <joenio@colivre.coop.br>
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright 2013 Joenio Costa
+
+This library is free software; you may redistribute it and/or modify
+it under the same terms as Perl itself.

@@ -7,7 +7,11 @@ extends qw(MooseX::App::Cmd::Command);
  
 =head1 NAME
 
-CodeJuicer::Cmd::Command::cluster - add task to calculate graph clusters to the Gearman queue
+CodeJuicer::Cmd::Command::cluster - enqueue task to calculate clusters to graphs
+
+=head1 DESCRIPTION
+
+Calculate clusters for the graphs.
 
 =cut
 
@@ -35,3 +39,18 @@ sub execute {
 }
 
 __PACKAGE__->meta->make_immutable;
+
+=head SEE ALSO
+
+codejuicer(1)
+
+=head1 AUTHOR
+
+Joenio Costa <joenio@colivre.coop.br>
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright 2013 Joenio Costa
+
+This library is free software; you may redistribute it and/or modify
+it under the same terms as Perl itself.

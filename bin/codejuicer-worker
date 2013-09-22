@@ -5,6 +5,20 @@ use CodeJuicer;
 use CodeJuicer::Worker;
 use Daemon::Control;
 
+=head1 NAME
+
+codejuicer-worker - CodeJuicer worker daemon
+
+=head1 USAGE
+
+  codejuicer-worker [start|stop|status]
+
+=head1 DESCRIPTION
+
+See L<CodeJuicer::Worker> for details.
+
+=cut
+
 Daemon::Control->new({
   name         => 'codejuicer-worker',
   lsb_start    => '$syslog $remote_fs',
@@ -21,3 +35,7 @@ Daemon::Control->new({
   stdout_file  => "$CodeJuicer::LOGDIR/codejuicer-worker.log",
   fork         => 2,
 })->run;
+
+=head1 SEE ALSO
+
+L<CodeJuicer::Worker>

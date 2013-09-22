@@ -7,7 +7,12 @@ extends qw(MooseX::App::Cmd::Command);
  
 =head1 NAME
 
-CodeJuicer::Cmd::Command::update - add task to update repository to the Gearman queue
+CodeJuicer::Cmd::Command::update - enqueue function to update and re-analyse repository
+
+=head1 DESCRIPTION
+
+Fetch the last commits from the repository, re-analyse source code and
+re-calculate clusters for the graphs.
 
 =cut
 
@@ -37,3 +42,18 @@ sub execute {
 }
 
 __PACKAGE__->meta->make_immutable;
+
+=head SEE ALSO
+
+codejuicer(1)
+
+=head1 AUTHOR
+
+Joenio Costa <joenio@colivre.coop.br>
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright 2013 Joenio Costa
+
+This library is free software; you may redistribute it and/or modify
+it under the same terms as Perl itself.

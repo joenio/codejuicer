@@ -3,6 +3,25 @@ use Modern::Perl;
 use Moose;
 use CodeJuicer::VCS::Driver;
 
+=head1 NAME
+
+CodeJuicer::VCS - abstraction layer to deal with version control systems
+
+=head1 DESCRIPTION
+
+Aimed to fetch and update source code hosted on version control systems
+servers.
+
+=head1 METHODS
+
+=head2 new($driver_name)
+
+Return a instance of CodeJuicer::VCS to the given driver_name, driver_name
+should be one of the supported drivers, CodeJuicer::VCS::Driver is the
+namespace for the drivers.
+
+=cut
+
 has driver => (is => 'ro');
 
 around BUILDARGS => sub {
@@ -26,6 +45,12 @@ sub _repository_exists {
   -e $output && -d $output;
 }
 
+=head2 fetch($url, $output)
+
+Fetch the source code hosted on the given URL and save on output.
+
+=cut
+
 sub fetch {
   my ($self, $url, $output) = @_;
   $self->driver->url($url);
@@ -37,6 +62,12 @@ sub fetch {
   print "I: Fetching...";
   return $self->driver->fetch;
 }
+
+=head2 update($url, $output)
+
+Fetch the source code hosted on the given URL and save on the output directory.
+
+=cut
 
 sub update {
   my ($self, $url, $input) = @_;
@@ -51,3 +82,18 @@ sub update {
 }
 
 __PACKAGE__->meta->make_immutable;
+
+=head1 SEE ALSO
+
+L<CodeJuicer::VCS::Driver>
+
+=head1 AUTHOR
+
+Joenio Costa <joenio@colivre.coop.br>
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright 2013 Joenio Costa
+
+This library is free software; you may redistribute it and/or modify
+it under the same terms as Perl itself.

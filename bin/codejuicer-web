@@ -5,6 +5,12 @@ use Mojolicious::Lite;
 use CodeJuicer;
 use CodeJuicer::DB;
 
+=head1 NAME
+
+codejuicer-web - CodeJuicer web interface
+
+=cut
+
 app->config(hypnotoad => {
   lock_file => "$CodeJuicer::RUNDIR/codejuicer-web.lock",
   pid_file => "$CodeJuicer::RUNDIR/codejuicer-web.pid",

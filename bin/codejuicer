@@ -2,4 +2,27 @@
 use Modern::Perl;
 use FindBin::libs;
 use CodeJuicer::Cmd;
+
+=head1 NAME
+
+codejuicer - CodeJuicer command line interface
+
+=head1 USAGE
+
+  codejuicer <COMMAND> <OPTIONS>
+
+=head1 DESCRIPTION
+
+Command line interface for CodeJuicer tools.
+
+=head1 COMMAND
+
+Run `codejuicer` to see all commands available.
+
+=head1 OPTIONS
+
+Run `codejuicer <tool> --help` to 
+
+=cut
+
 CodeJuicer::Cmd->run;

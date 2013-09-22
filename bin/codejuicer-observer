@@ -4,6 +4,20 @@ use FindBin::libs;
 use CodeJuicer;
 use CodeJuicer::Observer;
 use Daemon::Control;
+
+=head1 NAME
+
+codejuicer-observer - CodeJuicer observer daemon
+
+=head1 USAGE
+
+  # codejuicer-observer [start|stop|status]
+
+=head1 DESCRIPTION
+
+See L<CodeJuicer::Observer> for details.
+
+=cut
  
 Daemon::Control->new({
   name         => "codejuicer-observer",
@@ -21,3 +35,7 @@ Daemon::Control->new({
   stdout_file  => "$CodeJuicer::LOGDIR/codejuicer-observer.log",
   fork         => 2,
 })->run;
+
+=head1 SEE ALSO
+
+L<CodeJuicer::Observer>

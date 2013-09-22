@@ -12,6 +12,11 @@ extends qw(MooseX::App::Cmd::Command);
 
 CodeJuicer::Cmd::Command::purge - drop database and all fetched repositories
 
+=head1 DESCRIPTION
+
+Delete any repository already fetched by CodeJuicer and drop all data in
+the 'codejuicer' database.
+
 =cut
 
 sub execute {
@@ -39,11 +44,21 @@ sub execute {
   else {
     say "Aborting... good choice!";
   }
-
-  #system('bin/codejuicer-worker start');
-  #system('bin/codejuicer-observer start');
-  #say "Starting Hypnotoad server.";
-  #system('hypnotoad bin/codejuicer-web');
 }
 
 __PACKAGE__->meta->make_immutable;
+
+=head SEE ALSO
+
+codejuicer(1)
+
+=head1 AUTHOR
+
+Joenio Costa <joenio@colivre.coop.br>
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright 2013 Joenio Costa
+
+This library is free software; you may redistribute it and/or modify
+it under the same terms as Perl itself.

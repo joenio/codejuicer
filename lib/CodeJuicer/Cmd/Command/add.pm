@@ -7,7 +7,12 @@ extends qw(MooseX::App::Cmd::Command);
  
 =head1 NAME
 
-CodeJuicer::Cmd::Command::add - add task to fetch and analyse repository to the Gearman queue
+CodeJuicer::Cmd::Command::add - enqueue function to fetch and analyse repository
+
+=head1 DESCRIPTION
+
+Fetch the repository, analyse source code and calculate clusters for the
+graphs.
 
 =cut
 
@@ -29,6 +34,7 @@ has type => (
   required => 1,
 );
  
+
 sub execute {
   my ($self, $opt, $args) = @_;
   CodeJuicer->dispatch_gearman_task('add', $self->type, $self->url);
@@ -37,3 +43,18 @@ sub execute {
 }
 
 __PACKAGE__->meta->make_immutable;
+
+=head SEE ALSO
+
+codejuicer(1)
+
+=head1 AUTHOR
+
+Joenio Costa <joenio@colivre.coop.br>
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright 2013 Joenio Costa
+
+This library is free software; you may redistribute it and/or modify
+it under the same terms as Perl itself.
