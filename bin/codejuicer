@@ -21,8 +21,22 @@ Run `codejuicer` to see all commands available.
 
 =head1 OPTIONS
 
-Run `codejuicer <tool> --help` to 
+
+Run `codejuicer <tool> --help` to see...
 
 =cut
 
+# TODO ^ finish these POD
+
 CodeJuicer::Cmd->run;
+
+=head1 AUTHOR
+
+Joenio Costa <joenio@colivre.coop.br>
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright 2013 Joenio Costa
+
+This library is free software; you may redistribute it and/or modify
+it under the same terms as Perl itself.

@@ -9,12 +9,33 @@ use CodeJuicer::DB;
 
 codejuicer-web - CodeJuicer web interface
 
+=head1 USAGE
+
+  # hypnotoad bin/codejuicer-web
+
+Stop:
+
+  # hypnotoad -s bin/codejuicer-web
+
+=head1 DESCRIPTION
+
+It's a little L<Mojolicious::Lite> app to provide Web interface for all
+JSON stored in the 'codejuicer' L<MongoDB> database.
+
 =cut
 
 app->config(hypnotoad => {
   lock_file => "$CodeJuicer::RUNDIR/codejuicer-web.lock",
   pid_file => "$CodeJuicer::RUNDIR/codejuicer-web.pid",
 });
+
+=head1 METHODS
+
+=head2 GET /
+
+Return a list of repositories and some metadata related to it.
+
+=cut
 
 get '/' => sub {
   my $self = shift;
@@ -24,12 +45,26 @@ get '/' => sub {
   $self->render(json => \@repositories);
 };
 
+=head2 GET /graphs/:id
+
+Return the graphs from the repository identified by the ':id', ':id' is the
+hash SHA1 of the repository URL.
+
+=cut
+
 get '/graphs/:id' => sub {
   my $self = shift;
   $self->app->log->info("Request " . $self->req->url->to_string);
   my $graphs = CodeJuicer::DB->c('graphs')->find({ _id => $self->param('id') });
   $self->render(json => $graphs->all);
 };
+
+=head2 GET /metrics/:id
+
+Return the metrics from the repository identified by the ':id', ':id' is the
+hash SHA1 of the repository URL.
+
+=cut
 
 get '/metrics/:id' => sub {
   my $self = shift;
@@ -39,6 +74,20 @@ get '/metrics/:id' => sub {
 };
 
 app->start;
+
+=head1 AUTHOR
+
+Joenio Costa <joenio@colivre.coop.br>
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright 2013 Joenio Costa
+
+This library is free software; you may redistribute it and/or modify
+it under the same terms as Perl itself.
+
+=cut
+
 __DATA__
 
 @@ index.html.ep

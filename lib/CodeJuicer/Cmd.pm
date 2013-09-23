@@ -4,6 +4,12 @@ use Moose;
  
 extends qw(MooseX::App::Cmd);
 
+=head1 NAME
+
+CodeJuicer::Cmd - just extends MooseX::App::Cmd
+
+=cut
+
 __PACKAGE__->meta->make_immutable;
 
 =head1 AUTHOR

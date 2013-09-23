@@ -10,7 +10,7 @@ CodeJuicer::Observer - periodicaly verify the repositories and update then
 
 =head1 DESCRIPTION
 
-Update each repository once a day, execute the CodeJuicer::Cmd::Command::update
+Update each repository once a day, execute the L<CodeJuicer::Cmd::Command::update>
 to fetch latest commits from repository, analyse code and store extracted
 informations on database.
 

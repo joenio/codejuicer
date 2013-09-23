@@ -67,8 +67,6 @@ our $LOGDIR = $ENV{CJ_LOGDIR} // "$Bin/../log";
 
 =end html
 
-=cut
-
 =head1 AUTHOR
 
 Joenio Costa <joenio@colivre.coop.br>

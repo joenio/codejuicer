@@ -50,7 +50,7 @@ sub execute {
 
 __PACKAGE__->meta->make_immutable;
 
-=head SEE ALSO
+=head1 SEE ALSO
 
 codejuicer(1)
 

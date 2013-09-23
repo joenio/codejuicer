@@ -8,7 +8,7 @@ CodeJuicer::DB - a thin layer on top of MongoDB
 
 =head1 DESCRIPTION
 
-Create a connection to the MongoDB server and connect to the 'codejuicer'
+Create a connection to the L<MongoDB> server and connect to the 'codejuicer'
 database.
 
 =head1 GLOBAL VARIABLES

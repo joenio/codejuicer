@@ -16,8 +16,8 @@ servers.
 
 =head2 new($driver_name)
 
-Return a instance of CodeJuicer::VCS to the given driver_name, driver_name
-should be one of the supported drivers, CodeJuicer::VCS::Driver is the
+Return a instance of L<CodeJuicer::VCS> to the given driver_name, driver_name
+should be one of the supported drivers, L<CodeJuicer::VCS::Driver> is the
 namespace for the drivers.
 
 =cut
